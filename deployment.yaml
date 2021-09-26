@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-dogstatsd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-dogstatsd
+  template:
+    metadata:
+      labels:
+        app: app-dogstatsd
+    spec:
+      containers:
+      - name: app-dogstatsd
+        image: synfinmelab/app-dogstatsd:0.2
+        env:
+        - name: DOGSTATSD_HOST
+          value: dogstatsd.monitoring.svc.cluster.local.
